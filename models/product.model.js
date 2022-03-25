@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const User = require('./user.model');
 
 const productSchema =  new Schema({
     name: {
@@ -17,7 +18,7 @@ const productSchema =  new Schema({
     reviews: [{
         rating: Number,
         user: {
-            type: ObjectId,
+            type: Schema.Types.ObjectId,
             ref: User
         },
         text: String,
