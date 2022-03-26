@@ -8,12 +8,14 @@ require('./configs/mongodb.config');
 //Route constants
 const productRoute = require('./routes/product.route');
 const userRoute = require('./routes/user.route');
+const orderRoute = require('./routes/order.route');
 
 //middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/products', productRoute);
 app.use('/users', userRoute);
+app.use('/orders', orderRoute);
 
 app.get('/', (req, res) => {
     res.send("This is our API-101 session.");

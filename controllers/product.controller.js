@@ -27,4 +27,19 @@ async function getAllproducts(req, res) {
     }
 }
 
-module.exports = {addProduct, getAllproducts};
+async function reviewProduct(req, res) {
+    try {
+        const review = req.body;
+        const productId = req.params.productId;
+        const reviewedProduct = await Product.findByIdAndUpdate(productId, {$push: {reviews: review}}, {new: true});
+        res.status(200).json({
+            message: "Review added successfully",
+            reviewedProduct
+        });
+    } catch(err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+}
+
+module.exports = {addProduct, getAllproducts, reviewProduct};
